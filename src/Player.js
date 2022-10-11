@@ -1,10 +1,20 @@
-import React from 'react'
+import React from 'react';
+import './Player.css';
+import Sidebar from './Sidebar';
+import Footer from './Footer';
+import Body from './Body';
 
-const PLayer = () => {
+const PLayer = ({spotify}) => {
   return (
-    <h1>
-        Welcome to Spotify
-    </h1>
+    <div className='player'>
+
+      <div className='player__body'>
+        <Sidebar />
+        <Body spotify={spotify}/>
+      </div>
+
+      <Footer/>
+    </div>
   )
 }
 

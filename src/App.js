@@ -33,15 +33,33 @@ function App() {
         
       })
     }
-    console.log('i am user:', user);
-    console.log('i have a token', token );
    
+    spotify.getUserPlaylists().then( (playlists) => {
+      dispatch({
+        type: 'SET_PLAYLISTS',
+        playlists: playlists
+      })
+    } )
+
+    spotify.getPlaylist('37i9dQZEVXcEx4auSetwFz').then(
+      (response) => {
+          dispatch({
+            type: 'SET_DISCOVER_WEEKLY',
+            discover_weekly: response,
+          })
+          console.log(response)
+      }
+
+    )
+
+    
   }, [dispatch, token, user])
 
   return (
     <div className="App">
      {
-      token ? <Player /> : 
+      token ?
+       <Player spotify={spotify} /> : 
       <Login />
      }
     </div>
